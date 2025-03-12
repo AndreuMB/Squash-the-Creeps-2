@@ -57,5 +57,4 @@ func die():
 
 
 func _on_mob_detector_body_entered(body: Node3D) -> void:
-	print("enter mob detector")
 	die()

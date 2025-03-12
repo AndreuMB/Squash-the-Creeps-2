@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://41ksep4r83ci"]
 
 [ext_resource type="PackedScene" uid="uid://bv5c7xctnampi" path="res://player.tscn" id="1_tqs5b"]
-[ext_resource type="Script" path="res://Main.gd" id="1_ubf3c"]
+[ext_resource type="Script" uid="uid://cuvxt8k515brq" path="res://main.gd" id="1_ubf3c"]
 [ext_resource type="PackedScene" uid="uid://drtcqtf5novpo" path="res://mob.tscn" id="2_bwh0l"]
 [ext_resource type="FontFile" uid="uid://bwai3d868ol4l" path="res://fonts/Montserrat-Medium.ttf" id="4_qe36e"]
-[ext_resource type="Script" path="res://score_label.gd" id="5_dhi68"]
+[ext_resource type="Script" uid="uid://crparosc10bfy" path="res://score_label.gd" id="5_dhi68"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ekpp"]
 size = Vector3(60, 3, 60)
@@ -116,9 +116,18 @@ grow_vertical = 2
 color = Color(0.282353, 0, 0.658824, 0.215686)
 
 [node name="Label" type="Label" parent="UserInterface/Retry"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -14.0
+offset_right = 107.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Press enter to retry"
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
