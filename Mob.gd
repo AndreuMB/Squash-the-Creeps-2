@@ -17,7 +17,7 @@ func initialize(start_position,player_position):
 		velocity = Vector3.FORWARD * random_speed
 		# rotate velocity vector to move the mob towars the direction is looking
 		velocity = velocity.rotated(Vector3.UP, rotation.y)
-
+		$AnimationPlayer.speed_scale = random_speed / min_speed
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()

@@ -24,7 +24,10 @@ func _physics_process(delta: float) -> void:
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
 		$Pivot.basis = Basis.looking_at(direction)
-		
+		$AnimationPlayer.speed_scale = 4
+	else:
+		$AnimationPlayer.speed_scale = 1
+	
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		target_velocity.y = jump_impulse
 		
@@ -50,6 +53,10 @@ func _physics_process(delta: float) -> void:
 				mob.squash()
 				target_velocity.y = bounce_impulse
 				break
+	
+	# make the player animation arc when jumping
+	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
+	
 
 func die():
 	hit.emit()
