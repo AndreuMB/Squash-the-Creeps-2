@@ -10,6 +10,16 @@ func _on_mob_timer_timeout() -> void:
 	var mob_spawn_location = get_node("SpawnPath/SpawnLocation")
 	mob_spawn_location.progress_ratio = randf()
 	
+	var difficulty_increase = 100
+	
+	if ($UserInterface.time < 100):
+		difficulty_increase = $UserInterface.time
+		# increase enemy spawn rate
+		$MobTimer.wait_time = (5 - $UserInterface.time/20)/10
+	
+	# set speed to the mob
+	mob.difficulty += difficulty_increase/20
+		
 	# initialize function mob script
 	var player_position = $Player.position
 	mob.initialize(mob_spawn_location.position,player_position)
@@ -23,13 +33,10 @@ func _on_mob_timer_timeout() -> void:
 func _on_player_hit() -> void:
 	$MobTimer.stop()
 	$UserInterface._game_over()
-	
-
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept") and $UserInterface/Retry.visible:
-			get_tree().reload_current_scene()
-
+	if event.is_action_pressed("ui_accept") and $UserInterface/Retry.visible and $UserInterface/RestartTimer.is_stopped():
+		get_tree().reload_current_scene()
 
 func _on_player_floor_contact() -> void:
 	$UserInterface.set_combo($Player.combo_multiplier)

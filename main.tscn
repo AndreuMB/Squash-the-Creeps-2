@@ -82,7 +82,7 @@ mesh = SubResource("CylinderMesh_ttiad")
 curve = SubResource("Curve3D_ge24x")
 
 [node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(0.00341267, 0, -0.999992, 0, 1, 0, 0.999992, 0, 0.00341267, -13.0241, 0, -14.002)
+transform = Transform3D(0.00341266, 0, -0.999992, 0, 1, 0, 0.999992, 0, 0.00341266, -13.0241, 0, -14.002)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -113,7 +113,20 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Combo: 0"
 
+[node name="TimerLabel" type="Label" parent="UserInterface"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_bottom = 32.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "00:00"
+horizontal_alignment = 2
+
 [node name="Retry" type="ColorRect" parent="UserInterface"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,6 +165,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Higher Combo: 0"
 horizontal_alignment = 1
+
+[node name="RestartTimer" type="Timer" parent="UserInterface"]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="floor_contact" from="Player" to="." method="_on_player_floor_contact"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
