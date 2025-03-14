@@ -3,11 +3,16 @@ extends CharacterBody3D
 @export var speed = 14
 @export var fall_acceleration = 75
 @export var jump_impulse = 20
+@export var double_jump_impulse = 15
 @export var bounce_impulse = 16
+@export var combo_multiplier = 1
 
 var target_velocity = Vector3.ZERO
+var double_jump_used = false
+var on_floor_contact = false
 
 signal hit
+signal floor_contact
 
 func _physics_process(delta: float) -> void:
 	var direction =  Vector3.ZERO
@@ -27,16 +32,23 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.speed_scale = 4
 	else:
 		$AnimationPlayer.speed_scale = 1
+		
+	
 	
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		target_velocity.y = jump_impulse
+		on_floor_contact = false
+
+	if not is_on_floor() and Input.is_action_just_pressed("jump") and !double_jump_used:
+		target_velocity.y = double_jump_impulse
+		double_jump_used = true
 		
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
 	
 	if not is_on_floor():
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
-		
+	
 	velocity = target_velocity
 	move_and_slide()
 	
@@ -50,9 +62,17 @@ func _physics_process(delta: float) -> void:
 			var mob = collision.get_collider()
 			# if it hits from above
 			if Vector3.UP.dot(collision.get_normal()) > 0.1:
-				mob.squash()
+				combo_multiplier += 1
+				mob.squash(combo_multiplier)
 				target_velocity.y = bounce_impulse
+				double_jump_used = false
 				break
+		else:
+			if is_on_floor() and !on_floor_contact:
+				on_floor_contact = true
+				double_jump_used = false
+				combo_multiplier = 0
+				floor_contact.emit()
 	
 	# make the player animation arc when jumping
 	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse

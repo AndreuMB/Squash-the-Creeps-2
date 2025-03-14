@@ -2,9 +2,6 @@ extends Node
 
 @export var mob_scene: PackedScene
 
-func _ready() -> void:
-	$UserInterface/Retry.hide()
-
 func _on_mob_timer_timeout() -> void:
 	# instantiate mob
 	var mob = mob_scene.instantiate()
@@ -21,13 +18,18 @@ func _on_mob_timer_timeout() -> void:
 	add_child(mob)
 	
 	# squased signal to score label
-	mob.squashed.connect($UserInterface/ScoreLabel._on_mob_squashed.bind())
-
+	mob.squashed.connect($UserInterface._on_mob_squashed.bind())
 
 func _on_player_hit() -> void:
 	$MobTimer.stop()
-	$UserInterface/Retry.show()
+	$UserInterface._game_over()
+	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and $UserInterface/Retry.visible:
 			get_tree().reload_current_scene()
+
+
+func _on_player_floor_contact() -> void:
+	$UserInterface.set_combo($Player.combo_multiplier)
