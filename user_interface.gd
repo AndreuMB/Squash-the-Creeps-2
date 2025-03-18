@@ -1,5 +1,7 @@
 extends Control
 
+@export var score_label_scene: PackedScene
+
 var score = 0
 var higher_combo = 0
 var time = 0
@@ -13,12 +15,13 @@ func _process(delta: float) -> void:
 	time += delta
 	time_to_string()
 
-func _on_mob_squashed(combo_multiplier: int):
+func _on_mob_squashed(combo_multiplier: int, mob_position: Vector3):
 	score += 1 * combo_multiplier
 	if combo_multiplier > higher_combo:
 		higher_combo = combo_multiplier
 	$ScoreInfo/ScoreLabel.text = "Score: %s" % score
 	set_combo(combo_multiplier)
+	
 	
 func set_combo(combo:int):
 	$ScoreInfo/ComboLabel.text = "Combo: %s" % combo

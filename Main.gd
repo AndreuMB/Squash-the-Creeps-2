@@ -2,6 +2,8 @@ extends Node
 
 @export var mob_scene: PackedScene
 
+const MAX_DIFFICULTY=100
+
 func _on_mob_timer_timeout() -> void:
 	# instantiate mob
 	var mob = mob_scene.instantiate()
@@ -10,7 +12,7 @@ func _on_mob_timer_timeout() -> void:
 	var mob_spawn_location = get_node("SpawnPath/SpawnLocation")
 	mob_spawn_location.progress_ratio = randf()
 	
-	var difficulty_increase = 100
+	var difficulty_increase = MAX_DIFFICULTY
 	
 	if ($UserInterface.time < 100):
 		difficulty_increase = $UserInterface.time
@@ -29,6 +31,8 @@ func _on_mob_timer_timeout() -> void:
 	
 	# squased signal to score label
 	mob.squashed.connect($UserInterface._on_mob_squashed.bind())
+	mob.squashed.connect($CameraPivot._on_mob_squashed.bind())
+	#mob.squashed.connect(_on_mob_squashed.bind())
 
 func _on_player_hit() -> void:
 	$MobTimer.stop()
