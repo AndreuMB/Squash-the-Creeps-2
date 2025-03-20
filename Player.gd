@@ -8,13 +8,15 @@ extends CharacterBody3D
 @export var combo_multiplier = 1
 
 var target_velocity = Vector3.ZERO
-var double_jump_used = false
-var on_floor_contact = false
+var double_jump_used: bool = false
+var on_floor_contact: bool = false
+var death: bool = false
 
 signal hit
 signal floor_contact
 
 func _physics_process(delta: float) -> void:
+	if death: return
 	var direction =  Vector3.ZERO
 	
 	if Input.is_action_pressed("move_right"):
@@ -79,9 +81,19 @@ func _physics_process(delta: float) -> void:
 	
 
 func die():
+	death = true
+	$CollisionShape3D.hide()
+	$MobDetector.hide()
+	$Pivot.hide()
 	hit.emit()
-	queue_free()
+	$Squashed.play()
+	
 
 
 func _on_mob_detector_body_entered(body: Node3D) -> void:
+	if death: return
 	die()
+
+
+func _on_squashed_finished() -> void:
+	queue_free()

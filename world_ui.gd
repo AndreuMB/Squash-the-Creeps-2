@@ -5,7 +5,8 @@ extends Marker3D
 const SCORE_ENTRIES = [
 	{"label": "OK", "color": Color.GREEN, "multicolor": false},
 	{"label": "NICE", "color": Color.AQUA, "multicolor": false},
-	{"label": "AWESOME", "color": Color.RED, "multicolor": false},
+	{"label": "GOOD", "color": Color.RED, "multicolor": false},
+	{"label": "AWESOME", "color": Color.DEEP_PINK, "multicolor": true},
 	{"label": "PERFECT", "color": Color.PURPLE, "multicolor": true}
 ]
 

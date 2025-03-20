@@ -30,5 +30,11 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	queue_free()
 
 func squash(combo):
+	$Squashed.play()
 	squashed.emit(combo,position)
+	$Pivot.visible = false
+	$CollisionShape3D. visible = false
+
+
+func _on_audio_stream_player_3d_finished() -> void:
 	queue_free()

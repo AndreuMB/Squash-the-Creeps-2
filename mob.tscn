@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://drtcqtf5novpo"]
+[gd_scene load_steps=7 format=3 uid="uid://drtcqtf5novpo"]
 
 [ext_resource type="Script" uid="uid://bqvgtlop0nedy" path="res://mob.gd" id="1_5gtcl"]
 [ext_resource type="PackedScene" uid="uid://djmylm5itducq" path="res://art/mob.glb" id="2_o25kn"]
+[ext_resource type="AudioStream" uid="uid://dis44qwyqapi5" path="res://art/audio/enemy_squash.mp3" id="3_ubaqv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u5lms"]
 size = Vector3(1.5, 1.5, 2)
@@ -62,4 +63,9 @@ libraries = {
 }
 autoplay = "float"
 
+[node name="Squashed" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ubaqv")
+volume_db = 80.0
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_visible_on_screen_notifier_3d_screen_exited"]
+[connection signal="finished" from="Squashed" to="." method="_on_audio_stream_player_3d_finished"]

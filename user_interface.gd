@@ -8,6 +8,8 @@ var time = 0
 var stop = false
 
 func _ready() -> void:
+	$Retry/VBoxContainer/RetryLabel.hide()
+	$Retry/VBoxContainer/ExitLabel.hide()
 	$Retry.hide()
 
 func _process(delta: float) -> void:
@@ -39,3 +41,19 @@ func time_to_string():
 	var sec = fmod(time,60)
 	var time_string = str("%02d" % min, ":", "%02d" % sec)
 	$TimerLabel.text = time_string
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_X:
+			get_tree().change_scene_to_file("res://main_menu.tscn")
+
+	if event.is_action_pressed("ui_accept") and $Retry.visible and $RestartTimer.is_stopped():
+		get_tree().reload_current_scene()
+
+
+func _on_restart_timer_timeout() -> void:
+	$Retry/VBoxContainer/RetryLabel.show()
+	$Retry/VBoxContainer/RetryLabel/AnimationPlayer.play("ease_in_out")
+	
+	$Retry/VBoxContainer/ExitLabel.show()
+	$Retry/VBoxContainer/ExitLabel/AnimationPlayer.play("ease_in_out")
