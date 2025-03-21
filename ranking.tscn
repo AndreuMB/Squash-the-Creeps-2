@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://pwpoy0m5qg7q"]
+
+[ext_resource type="Script" uid="uid://q4iqsydcpdp1" path="res://ranking.gd" id="1_hdexh"]
+[ext_resource type="Theme" uid="uid://dmjqb0k5k0xy6" path="res://base_theme.tres" id="1_ru0tx"]
+
+[node name="Ranking" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ru0tx")
+script = ExtResource("1_hdexh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -210.0
+offset_right = 100.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/Content"]
+layout_mode = 2
+text = "RANKING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Table" type="HBoxContainer" parent="Panel/MarginContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="ScoreColumn" type="VBoxContainer" parent="Panel/MarginContainer/Content/Table"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/Content/Table/ScoreColumn"]
+visible = false
+layout_mode = 2
+text = "1232222"
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/Content/Table/ScoreColumn"]
+visible = false
+layout_mode = 2
+text = "1234"
+
+[node name="NameColumn" type="VBoxContainer" parent="Panel/MarginContainer/Content/Table"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel/MarginContainer/Content/Table/NameColumn"]
+visible = false
+layout_mode = 2
+text = "tem"
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/Content/Table/NameColumn"]
+visible = false
+layout_mode = 2
+text = "tes"

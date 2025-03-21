@@ -3,10 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bv5c7xctnampi" path="res://player.tscn" id="1_tqs5b"]
 [ext_resource type="Script" uid="uid://cuvxt8k515brq" path="res://main.gd" id="1_ubf3c"]
 [ext_resource type="PackedScene" uid="uid://drtcqtf5novpo" path="res://mob.tscn" id="2_bwh0l"]
-[ext_resource type="FontFile" uid="uid://bwai3d868ol4l" path="res://fonts/Montserrat-Medium.ttf" id="4_qe36e"]
 [ext_resource type="Script" uid="uid://3jqy032hvknw" path="res://user_interface.gd" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dpf2nrq3gov1f" path="res://score_label.tscn" id="6_7mycd"]
+[ext_resource type="Theme" uid="uid://dmjqb0k5k0xy6" path="res://base_theme.tres" id="6_272bh"]
 [ext_resource type="Script" uid="uid://mn8qkhi2gru2" path="res://world_ui.gd" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://x0sugc8x8e5m" path="res://save_panel.tscn" id="8_5vw27"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ekpp"]
 size = Vector3(60, 3, 60)
@@ -27,9 +28,20 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="Theme" id="Theme_o5vdy"]
-default_font = ExtResource("4_qe36e")
-default_font_size = 22
+[sub_resource type="Animation" id="Animation_5vw27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_272bh"]
 resource_name = "ease_in_out"
@@ -46,21 +58,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5vw27"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kek77"]
@@ -124,7 +121,7 @@ mesh = SubResource("CylinderMesh_ttiad")
 curve = SubResource("Curve3D_ge24x")
 
 [node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(0.00341266, 0, -0.999989, 0, 1, 0, 0.999989, 0, 0.00341266, -13.0241, 0, -14.002)
+transform = Transform3D(0.00341265, 0, -0.999988, 0, 1, 0, 0.999988, 0, 0.00341265, -13.0241, 0, -14.002)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -137,7 +134,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_o5vdy")
+theme = ExtResource("6_272bh")
 script = ExtResource("5_7mycd")
 score_label_scene = ExtResource("6_7mycd")
 
@@ -225,7 +222,22 @@ libraries = {
 &"": SubResource("AnimationLibrary_kek77")
 }
 
+[node name="SaveLabel" type="Label" parent="UserInterface/Retry/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+text = "Press S to save score"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UserInterface/Retry/VBoxContainer/SaveLabel"]
+libraries = {
+&"": SubResource("AnimationLibrary_kek77")
+}
+
+[node name="SavePanel" parent="UserInterface/Retry" instance=ExtResource("8_5vw27")]
+layout_mode = 1
+
 [node name="RestartTimer" type="Timer" parent="UserInterface"]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="floor_contact" from="Player" to="." method="_on_player_floor_contact"]

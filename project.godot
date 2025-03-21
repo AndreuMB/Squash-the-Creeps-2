@@ -18,11 +18,16 @@ config/icon="res://icon.png"
 [autoload]
 
 MusicPlayer="*res://music_player.tscn"
+Supabase="*res://addons/supabase/Supabase/supabase.gd"
 
 [display]
 
 window/size/viewport_width=720
 window/size/viewport_height=540
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/supabase/plugin.cfg")
 
 [input]
 

@@ -22,6 +22,5 @@ func _on_mob_squashed(combo_multiplier: int, mob_position: Vector3):
 	# rotate slightly for not look directly to the player
 	label.rotation = randf_range(-PI / 4, PI / 4)
 	if SCORE_ENTRIES[score_index].multicolor:
-		print('enter')
 		animation_player.play("rainbow")
 	add_child(label_scene)

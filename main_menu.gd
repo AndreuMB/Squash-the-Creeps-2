@@ -3,7 +3,7 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$Menu/Ranking.hide()
 
 
 func _on_start_game_pressed() -> void:
@@ -11,8 +11,16 @@ func _on_start_game_pressed() -> void:
 
 
 func _on_ranking_pressed() -> void:
-	pass # Replace with function body.
+	$Menu/Ranking.show()
 
 
 func _on_exit_game_pressed() -> void:
 	get_tree().quit()
+	
+func _input(event: InputEvent):
+	if event is InputEventMouseButton and $Menu/Ranking.visible:
+		$Menu/Ranking.hide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if $Menu/Ranking.visible:
+		$Menu/Ranking.hide()
