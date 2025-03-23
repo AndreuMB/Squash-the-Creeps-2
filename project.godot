@@ -14,6 +14,7 @@ config/name="Squash the Creeps 2"
 run/main_scene="uid://bhhpsdlqlcn50"
 config/features=PackedStringArray("4.4")
 config/icon="uid://4u8jlt1smb0l"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 

@@ -83,7 +83,7 @@ script = ExtResource("1_66gxd")
 [node name="Character" parent="Pivot" instance=ExtResource("1_34gix")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("SphereShape3D_e8mmy")
 
 [node name="MobDetector" type="Area3D" parent="."]
@@ -92,7 +92,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MobDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("CylinderShape3D_xbsgt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
