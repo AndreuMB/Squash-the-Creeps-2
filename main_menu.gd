@@ -21,6 +21,6 @@ func _input(event: InputEvent):
 	if event is InputEventMouseButton and $Menu/Ranking.visible:
 		$Menu/Ranking.hide()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if $Menu/Ranking.visible:
 		$Menu/Ranking.hide()

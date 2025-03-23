@@ -10,7 +10,7 @@ func _ready() -> void:
 func select():
 	Supabase.database.selected.connect(_on_selected.bind())
 	Supabase.database.error.connect(_on_error.bind())
-	var query = SupabaseQuery.new().from("ranking").select(["*"])
+	var query = SupabaseQuery.new().from("ranking").select(["*"]).order('score',1).range(0,10)
 	Supabase.database.query(query)
 
 func _on_selected(result : Array):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhhpsdlqlcn50"]
+[gd_scene load_steps=9 format=3 uid="uid://bhhpsdlqlcn50"]
 
 [ext_resource type="Script" uid="uid://bp6nurwih2ais" path="res://main_menu.gd" id="1_jix8l"]
 [ext_resource type="Theme" uid="uid://dmjqb0k5k0xy6" path="res://base_theme.tres" id="2_fu7sn"]
@@ -9,7 +9,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_glbon"]
 size = Vector3(60, 3, 60)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glbon"]
+albedo_color = Color(0.372549, 0.686275, 1, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_nlkkf"]
+material = SubResource("StandardMaterial3D_glbon")
 size = Vector3(200, 2, 200)
 
 [node name="MainMenu" type="CanvasLayer"]

@@ -6,6 +6,7 @@ var score = 0
 var higher_combo = 0
 var time = 0
 var stop = false
+var saved = false
 
 func _ready() -> void:
 	$Retry/VBoxContainer/RetryLabel.hide()
@@ -49,9 +50,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event is InputEventKey and event.pressed:
 			if event.keycode == KEY_X:
 				get_tree().change_scene_to_file("res://main_menu.tscn")
-			elif event.keycode == KEY_S:
+			elif event.keycode == KEY_S and saved == false:
 				$Retry/SavePanel.set_score(score)
 				$Retry/SavePanel.show()
+				saved = true
+				$Retry/VBoxContainer/SaveLabel.hide()
+				
 		if event.is_action_pressed("ui_accept"):
 			get_tree().reload_current_scene()
 
