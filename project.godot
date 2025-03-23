@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Squash the Creeps (3D)"
+config/name="Squash the Creeps 2"
 run/main_scene="uid://bhhpsdlqlcn50"
 config/features=PackedStringArray("4.4")
-config/icon="res://icon.png"
+config/icon="uid://4u8jlt1smb0l"
 
 [autoload]
 
