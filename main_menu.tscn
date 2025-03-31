@@ -18,8 +18,9 @@ albedo_color = Color(0.372549, 0.686275, 1, 1)
 material = SubResource("StandardMaterial3D_glbon")
 size = Vector3(200, 2, 200)
 
-[node name="MainMenu" type="CanvasLayer"]
+[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("focus_button")]
 script = ExtResource("1_jix8l")
+focus_button = NodePath("Menu/VBoxContainer/StartGame")
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -128,6 +129,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Ranking" parent="Menu" instance=ExtResource("5_glbon")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="Menu/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]

@@ -90,7 +90,8 @@ func die():
 	
 
 
-func _on_mob_detector_body_entered(_body: Node3D) -> void:
+func _on_mob_detector_body_entered(mob: Node3D) -> void:
+	if mob.death == true: return
 	if death: return
 	die()
 

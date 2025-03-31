@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var max_speed = 18
 
 var difficulty = 0.5
+var death:bool = false
 
 signal squashed
 
@@ -30,10 +31,11 @@ func _on_visible_on_screen_notifier_3d_screen_exited() -> void:
 	queue_free()
 
 func squash(combo):
+	death = true
 	$Squashed.play()
 	squashed.emit(combo,position)
 	$Pivot.visible = false
-	$CollisionShape3D. visible = false
+	$CollisionShape3D.visible = false
 
 
 func _on_audio_stream_player_3d_finished() -> void:

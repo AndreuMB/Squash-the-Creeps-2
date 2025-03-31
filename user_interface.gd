@@ -56,7 +56,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				saved = true
 				$Retry/VBoxContainer/SaveLabel.hide()
 				
-		if event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("ui_accept") or event.is_action_pressed("jump"):
 			get_tree().reload_current_scene()
 
 
