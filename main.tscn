@@ -60,7 +60,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -249,11 +249,26 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="RetryLabel" type="Label" parent="UserInterface/Retry/VBoxContainer"]
+[node name="RetryLabel" type="HBoxContainer" parent="UserInterface/Retry/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Press enter to retry"
+alignment = 1
+
+[node name="PressLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/RetryLabel"]
+layout_mode = 2
+text = "Press"
+
+[node name="ActionLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/RetryLabel"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Ⓐ"
 horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/RetryLabel"]
+layout_mode = 2
+text = "to retry"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UserInterface/Retry/VBoxContainer/RetryLabel"]
 libraries = {
@@ -261,31 +276,65 @@ libraries = {
 }
 
 [node name="FinalScoreLabel" type="Label" parent="UserInterface/Retry/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Final Score: 0"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HigherComboLabel" type="Label" parent="UserInterface/Retry/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Higher Combo: 0"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ExitLabel" type="Label" parent="UserInterface/Retry/VBoxContainer"]
+[node name="ExitLabel" type="HBoxContainer" parent="UserInterface/Retry/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Press X to exit"
+alignment = 1
+
+[node name="PressLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/ExitLabel"]
+layout_mode = 2
+text = "Press"
+
+[node name="ActionLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/ExitLabel"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Ⓑ"
 horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/ExitLabel"]
+layout_mode = 2
+text = "to exit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UserInterface/Retry/VBoxContainer/ExitLabel"]
 libraries = {
 &"": SubResource("AnimationLibrary_kek77")
 }
 
-[node name="SaveLabel" type="Label" parent="UserInterface/Retry/VBoxContainer"]
+[node name="SaveLabel" type="HBoxContainer" parent="UserInterface/Retry/VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Press S to save score"
+alignment = 1
+
+[node name="PressLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/SaveLabel"]
+layout_mode = 2
+text = "Press"
+
+[node name="ActionLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/SaveLabel"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Ⓨ"
 horizontal_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="UserInterface/Retry/VBoxContainer/SaveLabel"]
+layout_mode = 2
+text = "to save score"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UserInterface/Retry/VBoxContainer/SaveLabel"]
 libraries = {
@@ -293,6 +342,7 @@ libraries = {
 }
 
 [node name="SavePanel" parent="UserInterface/Retry" instance=ExtResource("8_5vw27")]
+visible = false
 layout_mode = 1
 
 [node name="RestartTimer" type="Timer" parent="UserInterface"]
